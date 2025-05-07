@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WST_TradingHub</title>
+  <title>Tytuł</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <style>
     :root {
@@ -221,6 +221,7 @@
 
     #section5 {
       font-size:150%;
+      margin-top:-50px;
     }
 
     .workers-container {
@@ -349,7 +350,6 @@
     #section3 h2 {
       font-size: 28px;
       margin-bottom: 1.5rem;
-      border-bottom: 2px solid #ddd;
       padding-bottom: 0.5rem;
     }
 
@@ -385,9 +385,202 @@
       border-radius: 6px;
     }
 
+    .diagram {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: flex-start;
+      gap: 40px;
+      margin: 40px auto;
+      max-width: 1200px; 
+      position: relative;
+      margin-left:30px;
+    }
+
+    .side {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .box {
+      background: #ccc;
+      border-radius: 15px;
+      padding: 30px;
+      font-size: 110%;
+      box-shadow: -5px 0px 0px #7d7d7d;
+      width: 80%;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, font-size 0.3s ease;
+    }
+
+    .left-side .box {
+      box-shadow: 5px 0px 0px #7d7d7d;
+    }
+
+    body.dark .box {
+      background: #1E293B;
+      box-shadow: -5px 0px 0px white;
+    }
+
+    body.dark .left-side .box {
+      box-shadow: 5px 0px 0px white;
+    }
+
+    .left-side .arrow::after {
+      content: '➜';
+      position: absolute;
+      right: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      color:black;
+    }
+
+    .right-side .arrow::before {
+      content: '➜';
+      position: absolute;
+      left: -60px; 
+      top: 50%;
+      transform: translateY(-50%) scaleX(-1);
+      font-size: 40px;
+      color:black;
+    }
+    
+    body.dark .right-side .arrow::before, 
+    body.dark .left-side .arrow::after {
+      color:white;
+    }
+
+    .line {
+      width: 4px;
+      background-color: black;
+      align-self: stretch;
+      margin-left:30px;
+      margin-right:30px;
+      position: relative;
+      z-index: 1;
+    }
+
+
+    .dot {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 14px;
+      background-color: black;
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+
+    /* Strzałka w dół — oś czasu */
+    .line::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 15px solid black;
+    }
+
+    body.dark .dot, body.dark .line {
+      background-color:white;
+    }
+
+    body.dark .line::after {
+      border-top: 15px solid white;
+    }
+
+    .left-side {
+      align-items: flex-end; /* popycha boxy w stronę środka */
+    }
+
+    .right-side {
+      align-items: flex-start; /* zachowuje domyślne wyrównanie do środka */
+    }
+
+    .left-side .box:nth-child(1) {
+      margin-top: 0; /* Pierwszy blok zaczyna się od samej góry */
+    }
+
+    .left-side .box:nth-child(2) {
+      margin-top: 40%; /* Odstęp między blokami w lewej kolumnie */
+    }
+
+    .right-side .box:nth-child(1) {
+      margin-top: 30%; /* Prawy blok zaczyna się na tym samym poziomie co lewy pierwszy blok */
+    }
+
+    .right-side .box:nth-child(2) {
+      margin-top: 40%; /* Odstęp między blokami w prawej kolumnie */
+    }
+
+    .time-label {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: bold;
+      font-size: 16px;
+      padding: 2px 6px;
+      border-radius: 5px;
+      z-index: 3;
+      white-space: nowrap;
+    }
+
+    .time-label.top {
+      top: -50px;
+    }
+
+    .time-label.bottom {
+      bottom: -40px;
+    }
+
     #section2 .containers {
       padding:10px;
     }
+
+    .bg-section {
+      position: relative;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      color: white;
+      padding: 30px;
+      overflow: hidden;
+      margin: 20px 0;
+      border-radius: 10px;
+    }
+    .bg-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* przyciemnienie */
+      z-index: 0;
+    }
+
+    /* Tekst nad przyciemnieniem */
+    .bg-section > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro .bg-section {
+      background-image:url(tła/tło/);
+    }
+
+    .intro .bg-section {
+      background-image:url(tła/tło/Screenshot\ 2025-05-06\ at\ 21-43-03\ Projekt\ bez\ nazwy\ –\ A5\ \(w\ poziomie\)\ –\ Canva.png);
+    }
+
+    body.dark .intro .bg-section {
+      background-image:url(tła/tło/Screenshot\ 2025-05-06\ at\ 21-40-40\ Projekt\ bez\ nazwy\ –\ A5\ \(w\ poziomie\)\ –\ Canva.png);
+    }
+
+
 
   </style>
 </head>
@@ -426,14 +619,15 @@
       <img class="banner" src="wst.png" alt="baner">
       <div class="intro">
         <h1>Witamy w projekcie WST</h1>
-        <p>
-          Witamy w projekcie WST <br><br>
-          WST to innowacyjny projekt inteligentnego bota giełdowego, który działa w pełni autonomicznie na rynku finansowym. Jego głównym zadaniem jest nie tylko analiza danych rynkowych, ale także podejmowanie decyzji inwestycyjnych oraz samodzielna realizacja transakcji – wszystko bez udziału człowieka.<br><br>
-          Bot został zaprojektowany tak, aby działać 24 godziny na dobę, reagując na zmieniające się warunki rynkowe w czasie rzeczywistym. Wykorzystuje przy tym sprawdzone strategie inwestycyjne, analizę techniczną, elementy analizy wolumenowej oraz zaawansowane algorytmy z zakresu sztucznej inteligencji i automatyzacji.<br><br>
-          Celem projektu jest stworzenie stabilnego, zyskownego i niezależnego systemu inwestycyjnego, który efektywnie zarządza kapitałem, ogranicza ryzyko i dąży do regularnych zysków – bez emocji, błędów ludzkich i potrzeby ciągłej kontroli.<br><br>
-          WST powstaje na bazie doświadczenia w tradingu, nowoczesnych technologii i analizy danych, a jego filozofia opiera się na prostocie działania, transparentności oraz wysokiej skuteczności.<br><br>
-          Zapraszamy do śledzenia postępów naszego projektu – to dopiero początek, ale potencjał WST sięga naprawdę daleko.<br><br>
-        </p>
+        <div class="bg-section">
+          <p>
+            WST to innowacyjny projekt inteligentnego bota giełdowego, który działa w pełni autonomicznie na rynku finansowym. Jego głównym zadaniem jest nie tylko analiza danych rynkowych, ale także podejmowanie decyzji inwestycyjnych oraz samodzielna realizacja transakcji – wszystko bez udziału człowieka.<br><br>
+            Bot został zaprojektowany tak, aby działać 24 godziny na dobę, reagując na zmieniające się warunki rynkowe w czasie rzeczywistym. Wykorzystuje przy tym sprawdzone strategie inwestycyjne, analizę techniczną, elementy analizy wolumenowej oraz zaawansowane algorytmy z zakresu sztucznej inteligencji i automatyzacji.<br><br>
+            Celem projektu jest stworzenie stabilnego, zyskownego i niezależnego systemu inwestycyjnego, który efektywnie zarządza kapitałem, ogranicza ryzyko i dąży do regularnych zysków – bez emocji, błędów ludzkich i potrzeby ciągłej kontroli.<br><br>
+            WST powstaje na bazie doświadczenia w tradingu, nowoczesnych technologii i analizy danych, a jego filozofia opiera się na prostocie działania, transparentności oraz wysokiej skuteczności.<br><br>
+            Zapraszamy do śledzenia postępów naszego projektu – to dopiero początek, ale potencjał WST sięga naprawdę daleko.<br><br>
+          </p>
+        </div>
       </div>
     </section>
 
@@ -548,7 +742,7 @@
 
     <hr>
 
-    <section id="section3">
+    <!--<section id="section3">
       <h2> <i class="fas fa-calendar"></i> Harmonogram realizacji projektu</h2>
     
       <h3>1. Faza przygotowawcza (miesiące 1–2)</h3>
@@ -575,7 +769,34 @@
       <div class="containers">
         Projekt rozwijany jest etapami – od koncepcji, przez prototyp, aż po zaawansowane, skalowalne rozwiązanie. Główny cel to stworzenie stabilnego, przewidywalnego narzędzia do handlu na rynkach finansowych, opartego na logice i danych, a nie emocjach.
       </div>
-    </section>    
+    </section>    -->
+
+    <section id="section3">
+      <h2> <i class="fas fa-calendar"></i> Harmonogram realizacji projektu</h2>
+      <div class="diagram">
+        <div class="side left-side">
+          <div class="box arrow"> Wstępna analiza rynku, określenie celów projektu, stworzenie koncepcji systemu i zaplecza technicznego. <br> Przygotowanie środowiska programistycznego i rozpoczęcie kompletowania zespołu. </div>
+          <div class="box arrow">Wprowadzenie zaawansowanych funkcji, w tym elementów sztucznej inteligencji. Optymalizacja strategii na podstawie rzeczywistych wyników. Testy bezpieczeństwa, dostosowywanie systemu do zmiennych warunków rynkowych.</div>
+        </div>
+
+        <div class="line">
+          <div class="time-label top">2025</div>
+          <div class="time-label bottom">2030</div>
+        </div>
+      
+        <div class="side right-side">
+          <div class="box arrow">Budowa i testowanie podstawowych funkcji bota – analiza danych, tworzenie algorytmów, integracja z API i platformami brokerskimi. Rozpoczęcie testów – najpierw symulowanych, potem na realnym kapitale.</div>
+          <div class="box arrow">Stałe monitorowanie działania bota, wprowadzanie usprawnień, rozwój nowych funkcji. Stopniowe zwiększanie skali działania i przygotowania do komercjalizacji. Możliwe rozszerzenie na kolejne rynki finansowe.</div>
+        </div>
+      </div>      
+      <h3>Podsumowanie :</h3>
+      <div class="containers">
+        Projekt rozwijany jest etapami – od koncepcji, przez prototyp, aż po zaawansowane, skalowalne rozwiązanie. Główny cel to stworzenie stabilnego, przewidywalnego narzędzia do handlu na rynkach finansowych, opartego na logice i danych, a nie emocjach.
+      </div>
+    </section>
+    
+    
+    
 
     <hr>
 
@@ -586,24 +807,26 @@
       <p>Aby zapewnić najwyższą wydajność działania systemu automatycznego inwestowania (bota), niezbędne są odpowiednie zasoby technologiczne:</p>
 
       <h3><i class="fas fa-server"></i> 1. Specyfikacja serwera</h3>
+      <div class="bg-section" style="background-image:url(tła/specyfikacja_ser/Screenshot\ 2025-05-06\ at\ 22-06-32\ Serwer\ -\ Zdjęcia\ i\ ilustracje\ -\ iStock.png);">
         <p class="specifications"> <b> Pamięć RAM: </b> minimum 128 GB DDR4/DDR5 </p>
         <p class="specifications"> <b> Procesor: </b> minimum 24 wątki (np. 12 rdzeni / 24 wątki lub więcej)</p>
         <p class="specifications"> <b> Dysk: </b> 2–3 TB NVMe SSD zapewniający ultraszybki zapis/odczyt danych</p>
         <p class="specifications"> <b> Łącze internetowe:</b> światłowód min. 1 Gbps (optymalnie 10 Gbps, ping &lt; 5 ms)</p>
         <p class="specifications"> <b> Lokalizacja: </b> USA (blisko infrastruktury giełdowej)</p>
-
+      </div>
       <h3><i class="fas fa-map-marker-alt"></i> 2. Lokalizacja serwera</h3>
-      <p>
-        Preferowana lokalizacja: <strong>Nowy Jork (USA)</strong> — zapewnia minimalne opóźnienia pomiędzy serwerem a platformą MT5 (CI Markets).
-      </p>
+      <div class="bg-section" style="background-image: url(tła/lokalizacja/Screenshot\ 2025-05-06\ at\ 21-59-01\ Lokalizacja\ -\ Zdjęcia\ i\ ilustracje\ -\ iStock.png);">
+        <p> Preferowana lokalizacja: <strong>Nowy Jork (USA)</strong> — zapewnia minimalne opóźnienia pomiędzy serwerem a platformą MT5 (CI Markets). </p>
+      </div>
 
       <h3><i class="fas fa-building"></i> Rekomendowani dostawcy serwerów</h3>
+      <div class="bg-section" style="background-image:url(tła/rekomendowani_dostawcy/Screenshot\ 2025-05-06\ at\ 22-05-36\ Dostawca\ Usługi\ -\ Zdjęcia\ i\ ilustracje\ -\ iStock.png);">
         <p class="specifications"> <strong>ReliableSite</strong> – Intel i9-10900K, 128 GB RAM, 2 TB NVMe, 10 Gbps – <strong>$708/miesiąc</strong> </p>
         <p class="specifications"> <strong>Hivelocity</strong> – Ryzen 9 5950X, 128 GB RAM, 2 TB NVMe – <strong>$280+ opcje</strong> </p>
         <p class="specifications"> <strong>OVHcloud</strong> – Xeon Gold 6226R, 128 GB RAM, 3,2 TB NVMe – <strong>$350/miesiąc</strong> </p>
-
+      </div>
       <h3><i class="fas fa-database"></i> Dostęp do danych (API)</h3>
-      <table>
+      <table class="bg-section" style="background-image:url(tła/API/Screenshot\ 2025-05-06\ at\ 22-08-13\ Połączenia\ Api\ -\ Zdjęcia\ i\ ilustracje\ -\ iStock.png);">
         <thead>
           <tr>
             <th>Platforma</th>
@@ -644,25 +867,26 @@
       <p><strong>Łączny koszt subskrypcji API miesięcznie:</strong> $540</p>
 
       <h3><i class="fas fa-calculator"></i> Podsumowanie kosztów</h3>
-      <ul>
-        <li>Serwer + łącze: <strong>$708</strong></li>
-        <li>Subskrypcje API: <strong>$140</strong></li>
-        <li>Razem miesięcznie: <strong>$850</strong></li>
-        <li>Rocznie: <strong>$10,200</strong></li>
-        <li>5 lat: <strong> $51,000 </strong> (~210,000 PLN)</li>
-      </ul>
-
+      <div class="bg-section" style="width:50%; background-image:url(tła/koszty/Screenshot\ 2025-05-06\ at\ 22-09-15\ Koszty\ -\ Zdjęcia\ i\ ilustracje\ -\ iStock.png">
+        <ul>
+          <li>Serwer + łącze: <strong>$708</strong></li>
+          <li>Subskrypcje API: <strong>$540</strong></li>
+          <li>Razem miesięcznie: <strong>$1,248</strong></li>
+          <li>Rocznie: <strong>$14,976</strong></li>
+          <li>5 lat: <strong> $74,880 </strong> (~299,520 PLN)</li>
+        </ul>
+      </div>
       <h3><i class="fas fa-piggy-bank"></i> Kapitał inwestycyjny</h3>
       <p>Aby bot mógł działać w realnych warunkach: <strong>100,000 PLN</strong></p>
 
       <h2><i class="fas fa-flag-checkered"></i> Podsumowanie końcowe</h2>
-      <p><strong>Całkowity budżet projektu WST: ~310,000 PLN</strong></p>
+      <p><strong>Całkowity budżet projektu WST: ~400,000 PLN</strong></p>
     </section>
 
     <hr>
 
     <section id="section5">
-      <h1> Nasz zespół </h1>
+      <h1> <i class="fas fa-sitemap"></i> Nasz zespół </h1>
       <div id="pmp">
         <div class="containers">
           <img src="pmp.png" alt="pmp">
@@ -774,6 +998,39 @@
       activateLink(); // call once on load
     });
     </script>
+
+    <script>
+      function updateDots() {
+        const line = document.querySelector(".line");
+        const boxes = document.querySelectorAll(".box.arrow");
+
+        // Usuń istniejące kropki
+        line.querySelectorAll(".dot").forEach(dot => dot.remove());
+
+        // Delikatne przesunięcie kropki w górę, żeby wskazywała precyzyjnie strzałkę
+        const offsetY = -5;
+
+        boxes.forEach(box => {
+          const dot = document.createElement("div");
+          dot.classList.add("dot");
+
+          const boxRect = box.getBoundingClientRect();
+          const lineRect = line.getBoundingClientRect();
+          const center = boxRect.top + boxRect.height / 2 - lineRect.top + offsetY;
+
+          dot.style.top = `${center}px`;
+          line.appendChild(dot);
+        });
+      }
+
+      // Uruchom po załadowaniu strony
+      document.addEventListener("DOMContentLoaded", () => {
+        updateDots();
+        window.addEventListener("resize", updateDots);
+      });
+    </script>
+
+
   
 </body>
 </html>
